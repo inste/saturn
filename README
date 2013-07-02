@@ -1,0 +1,145 @@
+How to Build a Xubuntu Erlang PostgreSQL Dev Box,
+How to build a Xubuntu dev box for Erlang/PostgreSQL/Web Development:
+
+https://github.com/comptekki/dbswui/wiki/How-to-Build-a-Xubuntu-Erlang-PostgreSQL-Dev-Box
+
+приходится ставить postgres еще раз
+sudo apt-get install postgresql
+после этого появляется пользователь postgres
+sudo - su postgres -c /
+==========================================================================================
+Настраиваем PostgreSQL
+Редактируем под рутом файл настроек PostgreSQL: /usr/local/pgzotonic/pg_hba.conf
+ в конце файла все параметры ident комментируем символом #
+ и вставляем вместо ident параметр trust.
+ У меня получилось примерно так:
+# TYPE  DATABASE    USER        CIDR-ADDRESS          METHOD
+
+# "local" is for Unix domain socket connections only
+local   all         all                               trust #ident
+# IPv4 local connections:
+host    all         all         127.0.0.1/32          trust #ident
+# IPv6 local connections:
+host    all         all         ::1/128               trust #ident
+
+И далее под рутом стартуем PestgreSQL - командой: sudo service postrgresql start
+если запущена - останавливаем:
+sudo service postrgresql stop
+и запускаем.
+
+
+
+либо postres -D /usr/local/pgzotonic(локация базы) //в текущем варианте не использутеся
+
+ Создаем PostgreSQL базу данных для Zotonic:
+ под рутом запускаем клиента postgres: sudo su - postgres -c /usr/bin/psql
+ в появившейся консоле выполняем команды:
+CREATE USER zotonic WITH PASSWORD 'zotonic';
+CREATE DATABASE zotonic WITH OWNER = zotonic ENCODING = 'UTF8';
+GRANT ALL ON DATABASE zotonic TO zotonic;
+\c zotonic
+CREATE LANGUAGE "plpgsql";
+
+В случае ругани на UTF8 и template используем следующее:
+CREATE USER zotonic WITH PASSWORD 'zotonic';
+CREATE DATABASE zotonic TEMPLATE = template0 ENCODING = 'UTF8' OWNER = zotonic;
+GRANT ALL ON DATABASE zotonic TO zotonic;
+\c zotonic
+CREATE LANGUAGE "plpgsql";
+
+4) Создаем новый сайт Zotonic
+Находясь в папке, в которую мы установили Zotonic у меня это /home/user/zotonic
+ и под пользователем, под которым мы это делали в моем случае это user,
+ выполняем команду: ./bin/zotonic addsite my_new_site
+ на запрос: ">>> Hit return to proceed..."
+ просто нажимаем Enter и ждем
+
+
+5) Запускаем zotonic
+Находясь в папке с Zotonic'ом: /home/user/zotonic
+ запускаем сервер: ./bin/zotonic debug или ./start.sh
+
+
+ Готово, открываем в браузере адрес http://localhost:8000/
+ тут перечислены действующие сайты, их может быть несколько.
+ пароль в файле home/user/zotonic/priv/config
+ моя строчка с паролем: {password,"8cGgF6HV"}].
+
+ Далее открываем наш созданный сайт: http://my_new_site:8000/
+ интерфейс администратора находится: http://my_new_site:8000/admin/
+ пароль к нему в файле: /home/user/zotonic/priv/sites/my_new_site/config
+ По умолчанию пользователь:admin пароль:admin
+ Строки с паролем админа:
+ % Password for the 'admin' user.
+ {admin_password, "admin"},
+
+
+
+ Конфиг nginx'а для работы с Zotonic: INSTALL.nginx
+ находится в папке: /home/user/zotonic/doc/
+ там-же есть и другая полезная информация.
+
+===============================================================================
+Zotonic Deployment
+http://zotonic.com/docs/0.9/manuals/deployment/privilegedports.html
+
+
+Running on Port 80 and Port 443
+
+Using standard ports helps visitors discover your page and removes the awkward port number from URLs.
+
+The HTTP and HTTPS protocols are normally served on TCP ports 80 and 443. It is beneficial to run a these services on those standard ports: it aids discovery and lends a air of polish while a non-standard port number suggests something is incomplete.
+
+*nix systems only allow the superuser (root) to bind to ports below 1024. HTTP & HTTPS use ports 80 & 443 respectively. So setting up Zotonic to serve from those ports without running as superuser presents a problem, as *nix considers all ports below 1024 to be “privileged”, requiring special access.
+
+This manual outlines three different methods to let Zotonic listen on port 80. All of them are for *nix based systems only.
+Pre-launch notes
+
+Before Zotonic serves its sites on a privileged ports, the hostname portions of your Zotonic sites need to be changed to reflect this.
+
+For production release of your new Zotonic site you need to:
+Make sure that your server has a public IP address, and that the server accepts connections on port 80.
+For each of your Zotonic sites, configure their DNS (e.g. www.mysite.com) to point to your server’s IP address.
+Change {hostname, "mysite:8000"} to {hostname, "www.mysite.com"} in priv/sites/mysite/config. This last change enables the virtual hosting: it makes sure that Zotonic knows which site is being requested when somebody visits www.mysite.com.
+
+Using authbind
+
+Note: Instructions below assume site is named mysite and Zotonic is installed in /home/zotonic/zotonic. Replace as appropriate.
+
+Install authbind:
+zotonic:~$ sudo apt-get install authbind
+
+Configure authbind to allow zotonic user to access port 80:
+zotonic:~$ sudo touch /etc/authbind/byport/80
+zotonic:~$ sudo chown zotonic /etc/authbind/byport/80
+zotonic:~$ sudo chmod 500 /etc/authbind/byport/80
+
+Set up the environment.
+
+You need to tell Zotonic explicitly which IP address to listen on. Zotonic defaults to any, which will also bind to any ipv6 addresses available. However authbind doesn’t work with ipv6 and so will cause Zotonic to crash on startup.
+
+Add the following entries to /home/zotonic/.profile, then save file & exit:
+export ZOTONIC_PORT=80
+export ZOTONIC_PORT_SSL=443
+public_interface=eth0
+export ZOTONIC_IP=`/sbin/ifconfig $public_interface | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`
+export ERL="authbind --deep erl"
+
+Where eth0 is the name of the Ethernet interface that connects to the Internet. (For a MediaTemple (ve) host this was venet0:0) You could alternatively set it to lo for localhost-only testing or to a LAN-only interface (say eth1) for a multi-interface server you are using Zotonic to host an intranet site with.
+
+Source the file to update the environment:
+zotonic:~$ . ~/.profile
+
+Delete the Zotonic config file (this will be re-generated automatically when zotonic next starts up):
+zotonic:~$ rm ~zotonic/zotonic/priv/config
+
+Set the port for your site. Edit the hostname entry in ~zotonic/priv/sites/yoursite/config to read as follows:
+{hostname, "yoursite:80"}
+
+Stop zotonic if already running:
+zotonic:~$ ~/zotonic/bin/zotonic stop
+
+Start zotonic:
+zotonic:~$ ~/zotonic/bin/zotonic start
+
+Browse to http://yoursite/ and verify that everything is working like it should
