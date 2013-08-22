@@ -56,6 +56,13 @@
               </select>
             </div>
           </div>
+	  <div class="control-group ">
+            <label class="control-label" for="minvol" style="color:white">MinVol</label>
+            <div class="controls">
+              <input id="minvol" name="minvol" type="text" class="input-small"> 
+              {% validate id="minvol" type={numericality minimum=0 maximum=500} %}
+            </div>
+          </div>
           <!-- Button (Double) -->
           <div class="control-group">
             <label class="control-label" for=""></label>
@@ -64,6 +71,7 @@
               <button type="reset" class="btn btn-default" onclick="location.reload();">Reset</button>
             </div>
           </div>
+
 </form>
 </div>
 </div>
@@ -196,6 +204,10 @@
           <tr>
             <td>I:E</td>
             <td id="ie" name="ie"></td>
+          </tr>
+	  <tr>
+            <td>Tests</td>
+            <td id="tests" name="tests"></td>
           </tr>
         </tbody>
       </table>

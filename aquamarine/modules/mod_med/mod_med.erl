@@ -9,9 +9,10 @@
   %% @doc Handle the submit event of hello
   event({submit, {newmessage, _}, _TriggerId, _TargetId}, Context) -> 
      %% PatId = list_to_integer(z_context:get_q("patient_id", Context)), 
-      Age = list_to_integer(z_context:get_q_validated("age", Context)),   
+     %% Age = list_to_integer(z_context:get_q_validated("age", Context)),   
       Weight = list_to_integer(z_context:get_q_validated("weight", Context)),
-      Height = list_to_integer(z_context:get_q_validated("height", Context)), 
+      Height = list_to_integer(z_context:get_q_validated("height", Context)),
+      MinVol_inserted = list_to_integer(z_context:get_q_validated("minvol", Context)),
       Sex = z_context:get_q("sex", Context),
       case Sex of
       "Male" ->IBW=male(Height);
@@ -26,7 +27,9 @@
 	%%respirat
       MV=IBW/10,
       VT=round(IBW*6.5),
-      F=round(MV*1000/VT),
+			%%Otis
+      F=best_rate(IBW,MinVol_inserted), %%IBW?
+      %%F=round(MV*1000/VT),
       PEEP=5,
       E=e(F),
       IE=['1']++[' : ']++io_lib:format("~.2f",[E]),
@@ -38,7 +41,9 @@
       Bupivacaine=dose(1.5,3,ABW,'mg'),
       Intralipid_1=1.5*ABW,
       Intralipid_2=dose(0.25,0.5,ABW,'ml'),  %%kg/m ???
-      Naloxone=dose(0.1,2.0,1.0,'mg'),	
+      Naloxone=dose(0.1,2.0,1.0,'mg'),
+	Tests=io_lib:format("~.2f",[minvol(IBW,MinVol_inserted)]), %%
+ 	
       z_render:update("abw", io_lib:format("~.2f",[ABW])++[' kg'], 
             z_render:update("peep", integer_to_list(PEEP)++[' cm H2O'], 
             z_render:update("f", integer_to_list(F)++[' bpm'], 
@@ -55,9 +60,10 @@
 	    z_render:update("intralipid_1",io_lib:format("~.2f",[Intralipid_1])++[' ml'],
 	    z_render:update("bupivacaine",Bupivacaine,
 	    z_render:update("lidocaine",Lidocaine,
+	    z_render:update("tests",Tests,  %%
 	    z_render:update("atropine",io_lib:format("~.2f",[Atropine])++[' mg'],
 	    z_render:update("vecuronium", io_lib:format("~.2f",[Vecuronium])++[' mg'], 
-	    z_render:update("neostigmine", Neostigmine,Context))))))))))))))))))).
+	    z_render:update("neostigmine", Neostigmine,Context)))))))))))))))))))). %%
       
         dose(Mn,Mx,BW,End) ->
 		Min=Mn*BW,
@@ -92,4 +98,44 @@
 		N when N <40 ->'Class II Obesity';
 		N when N >=40 ->'Class III Obesity'
 		end.
- 
+
+	best_rate(BodyWt,MinVol_inserted) ->
+                A=a(),
+		RC=rc(),
+		Ve=ve(BodyWt,MinVol_inserted),
+		Vd=vd(BodyWt),
+		round(otis_f(A,RC,Ve,Vd,0)).
+
+        otis_f(A,RC,Ve,Vd,Tail) ->
+		Result=(math:sqrt(1+2*A*RC*(Ve-Tail*Vd)/Vd)-1)/(A*RC),
+		T=round(Tail*1000),
+		case round(Result*1000) of
+		T -> Result;
+		_ -> otis_f(A,RC,Ve,Vd,Result)
+                end. 
+
+	a() ->
+		(2*math:pi()*math:pi())/60.
+
+	rc() ->
+		Rtot=rtot(),
+		Crs=50,%%ml/mbar
+		Rtot*Crs/1000.
+
+	rtot() -> 
+		Rext=0,
+		Raw=10,
+		Rext+Raw.
+
+	ve(BodyWt,MinVol_inserted) -> 
+		MinVol=minvol(BodyWt,MinVol_inserted),
+		1000*MinVol.
+
+	vd(BodyWt) -> 
+		(BodyWt*2.2).
+
+	minvol(BodyWt,MinVol_inserted) ->
+		VentReq=100, %%ml/min/kg
+		MinVol_inserted*BodyWt*VentReq/100/1000.
+
+	
