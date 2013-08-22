@@ -1,12 +1,14 @@
 {% wire id="med-form" type="submit" postback={newmessage id=id} delegate="mod_med" %}
 
+<form class="form-horizontal" id="med-form" action="postback">
+
 <div class="span12">
     <div class="container-fluid" >
    <div class="row-fluid">
 
-    <div class="span4 well-table" style="background:#3CBFCB;height:420px;width:287px">
+    <div class="span4 well-table" style="background:#3CBFCB;height:350px;width:287px;">
 <div class="container" style="width:287px">
-<form class=" form-horizontal" id="med-form" action="postback" style="width:287px">
+
           <div class="control-group" >
             <label class="control-label" for="patient_id" style="color:white">Patient ID</label>
             <div class="controls">
@@ -56,14 +58,7 @@
               </select>
             </div>
           </div>
-	  <div class="control-group ">
-            <label class="control-label" for="minvol" style="color:white">MinVol</label>
-            <div class="controls">
-              <input id="minvol" name="minvol" type="text" class="input-small"> 
-              {% validate id="minvol" type={numericality minimum=0 maximum=500} %}
-            </div>
-          </div>
-          <!-- Button (Double) -->
+        <!-- Button (Double) -->
           <div class="control-group">
             <label class="control-label" for=""></label>
             <div class="controls">
@@ -71,62 +66,84 @@
               <button type="reset" class="btn btn-default" onclick="location.reload();">Reset</button>
             </div>
           </div>
+	
 
-</form>
+
 </div>
 </div>
-   <!-- <div class="span4"> <div class="well-table" style="background:Cornsilk"></div></div> -->
-    <div class="span8">
-    <div class="well-table" style="background:#2a81a7">
-    <label style="color: WhiteSmoke;">Medications</label>    <!--color: #4A4A4A-->
+
+    <div class="span4">
+    <div class="well-table" style="background:#2a81a7;height:328px;">
+    <label style="color: WhiteSmoke;">Otis</label>    <!--color: #4A4A4A-->
+
+  
+	<div class="control-group" >
+            <label class="control-label" for="minvol" style="color:white">% MinVol</label>
+            <div class="controls">
+              <input id="minvol" name="minvol" type="text" class="input-small">
+            </div>
+          </div> 
+	<div class="control-group" >
+            <label class="control-label" for="raw" style="color:white">Raw</label>
+            <div class="controls">
+              <input id="raw" name="raw" type="text" class="input-small" value="20">
+ 
+            </div>
+          </div>
+ 	<div class="control-group" >
+            <label class="control-label" for="crs" style="color:white">Crs</label>
+            <div class="controls">
+              <input id="crs" name="crs" type="text" class="input-small" value="50">
+              {% validate id="crs" type={numericality} %} 
+            </div>
+          </div>
+ 	<div class="control-group" >
+            <label class="control-label" for="rext" style="color:white">Rext</label>
+            <div class="controls">
+              <input id="rext" name="rext" type="text" class="input-small" value="0">
+              {% validate id="rext" type={numericality} %} 
+            </div>
+	</div>  
+ 	        
+
+
+    </div>
+    </div>
+
+ <div class="span4">
+    <div class="well-table" style="background:#2a81a7;height:328px;">
+    <label style="color: WhiteSmoke;">Otis</label>    <!--color: #4A4A4A-->
       <table class="table" style="background:#2a81a7;Color:WhiteSmoke">
         <thead>
           <tr>
-            <th>Drug</th>
-            <th>Rule</th>
-            <th>Dose</th>
+            <th>Parameter</th>
+            <th>Value</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Vecuronium</td>
-            <td>1 ED95 (0.05 mg/kg)</td>
-            <td id="vecuronium" name="vecuronium"></td>
+            <td>V'e</td>
+            <td id="v_e" name="ve"></td>
           </tr>
           <tr>
-            <td>Neostigmine</td>
-            <td>(0.04 - 0.07 mg/kg)</td>
-            <td id="neostigmine" name="neostigmine"></td>
+            <td>Vd</td>
+            <td id="vd" name="vd"></td>
           </tr>
           <tr>
-            <td>Atropine</td>
-            <td>(0.02 mg/kg)</td>
-            <td id="atropine" name="atropine"></td>
+            <td>V'd</td>
+            <td id="v_d" name="v_d"></td>
           </tr>
           <tr>
-            <td>Lidocaine</td>
-            <td>(1.5 - 5 mg/kg)</td>
-            <td id="lidocaine" name="lidocaine"></td>
+            <td>V'A</td>
+            <td id="v_a" name="v_a"></td>
           </tr>
           <tr>
-            <td>Bupivacaine</td>
-            <td>(1.5 - 3 mg/kg)</td>
-            <td id="bupivacaine" name="bupivacaine"></td>
+            <td>Rtot</td>
+            <td id="rtot" name="rtot"></td>
           </tr>
-          <tr>
-            <td>Intralipid</td>
-            <td>(1.5 ml/kg)</td>
-            <td id="intralipid_1" name="intralipid_1"></td>
-          </tr>
-          <tr>
-            <td>Intralipid</td>
-            <td>(0.25 - 0.5 ml/kg/m)</td>
-            <td id="intralipid_2" name="intralipid_2"></td>
-          </tr>
-          <tr>
-            <td>Naloxone</td>
-            <td>titrate 0.1 - 2 mg<br>max 10 mg</td>
-            <td id="naloxone" name="naloxone"></td>
+	  <tr>
+            <td>RC</td>
+            <td id="rc" name="rc"></td>
           </tr>
         </tbody>
       </table>
@@ -250,7 +267,9 @@
         </tbody>
       </table>
     </div>
+  </div>
 </div>
-   </div>
- </div>
-  
+</div>
+</div>
+</form>
+

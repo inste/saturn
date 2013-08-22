@@ -12,12 +12,19 @@
      %% Age = list_to_integer(z_context:get_q_validated("age", Context)),   
       Weight = list_to_integer(z_context:get_q_validated("weight", Context)),
       Height = list_to_integer(z_context:get_q_validated("height", Context)),
-      MinVol_inserted = list_to_integer(z_context:get_q_validated("minvol", Context)),
+      %% Otis
+      MinVol_inserted = list_to_integer(z_context:get_q("minvol", Context)), %%validated
+      Raw = list_to_integer(z_context:get_q("raw", Context)), %%validated
+      Crs= list_to_integer(z_context:get_q("crs", Context)), %%validated
+      Rext= list_to_integer(z_context:get_q("rext", Context)), %%validated
+      %% IBW
       Sex = z_context:get_q("sex", Context),
       case Sex of
       "Male" ->IBW=male(Height);
       "Female" ->IBW=female(Height)
       end,
+      %%Otis calculations
+      
 	%%antropo
       IBW130=IBW*1.3,
       ABW=IBW+0.4*(Weight-IBW),
@@ -28,21 +35,17 @@
       MV=IBW/10,
       VT=round(IBW*6.5),
 			%%Otis
-      F=best_rate(IBW,MinVol_inserted), %%IBW?
-      %%F=round(MV*1000/VT),
+      F=best_rate(IBW,MinVol_inserted,Rext,Raw,Crs),
+      V_e=ve(IBW,MinVol_inserted)/1000,
+      Vd=vd(IBW),
+      V_d=F*Vd/1000, 
+      V_A=F*(V_e*1000/F-Vd)/1000,
+      Rtot=rtot(Rext,Raw),
+      RC=rc(Crs,Rtot),
       PEEP=5,
       E=e(F),
       IE=['1']++[' : ']++io_lib:format("~.2f",[E]),
-	%% medications
-      Vecuronium=0.05*IBW,
-      Neostigmine=dose(0.04,0.07,IBW,'mg'),
-      Atropine=0.02*ABW,
-      Lidocaine=dose(1.5,5,ABW,'mg'),
-      Bupivacaine=dose(1.5,3,ABW,'mg'),
-      Intralipid_1=1.5*ABW,
-      Intralipid_2=dose(0.25,0.5,ABW,'ml'),  %%kg/m ???
-      Naloxone=dose(0.1,2.0,1.0,'mg'),
-	Tests=io_lib:format("~.2f",[minvol(IBW,MinVol_inserted)]), %%
+
  	
       z_render:update("abw", io_lib:format("~.2f",[ABW])++[' kg'], 
             z_render:update("peep", integer_to_list(PEEP)++[' cm H2O'], 
@@ -54,25 +57,15 @@
 	    z_render:update("bsa", io_lib:format("~.2f",[BSA])++[' m&sup2'],  
             z_render:update("ibw130", io_lib:format("~.2f",[IBW130])++[' kg'],   
 	    z_render:update("ibw", io_lib:format("~.2f",[IBW])++[' kg'],
-	    z_render:update("ie", IE,
-	    z_render:update("naloxone",Naloxone,
-	    z_render:update("intralipid_2",Intralipid_2,
-	    z_render:update("intralipid_1",io_lib:format("~.2f",[Intralipid_1])++[' ml'],
-	    z_render:update("bupivacaine",Bupivacaine,
-	    z_render:update("lidocaine",Lidocaine,
-	    z_render:update("tests",Tests,  %%
-	    z_render:update("atropine",io_lib:format("~.2f",[Atropine])++[' mg'],
-	    z_render:update("vecuronium", io_lib:format("~.2f",[Vecuronium])++[' mg'], 
-	    z_render:update("neostigmine", Neostigmine,Context)))))))))))))))))))). %%
-      
-        dose(Mn,Mx,BW,End) ->
-		Min=Mn*BW,
-		Max=Mx*BW,
-                f_dash_f(Min,Max)++[' ',End].
+	    z_render:update("ie", IE, 
+   	    %% Otis
+	    z_render:update("v_e", io_lib:format("~.1f",[V_e])++[' l/min'], 
+	    z_render:update("vd", io_lib:format("~.1f",[Vd])++[' ml'], 
+	    z_render:update("v_d", io_lib:format("~.1f",[V_d])++[' l/min'], 
+	    z_render:update("v_a", io_lib:format("~.1f",[V_A])++[' l/min'], 
+	    z_render:update("rtot", integer_to_list(Rtot)++[' cmH2O/l/s'], 
+	    z_render:update("rc", io_lib:format("~.3f",[RC])++[' s'],Context))))))))))))))))).      
 
-
-	f_dash_f(Min,Max) ->
-		io_lib:format("~.2f",[Min])++[' - ']++io_lib:format("~.2f",[Max]).
 
 
 
@@ -99,11 +92,14 @@
 		N when N >=40 ->'Class III Obesity'
 		end.
 
-	best_rate(BodyWt,MinVol_inserted) ->
+
+	%% Otis
+	best_rate(IBW,MinVol_inserted,Rext,Raw,Crs) ->
                 A=a(),
-		RC=rc(),
-		Ve=ve(BodyWt,MinVol_inserted),
-		Vd=vd(BodyWt),
+		Rtot=rtot(Rext,Raw),
+		RC=rc(Crs,Rtot),
+		Ve=ve(IBW,MinVol_inserted),
+		Vd=vd(IBW),
 		round(otis_f(A,RC,Ve,Vd,0)).
 
         otis_f(A,RC,Ve,Vd,Tail) ->
@@ -117,25 +113,23 @@
 	a() ->
 		(2*math:pi()*math:pi())/60.
 
-	rc() ->
-		Rtot=rtot(),
-		Crs=50,%%ml/mbar
+	rc(Crs,Rtot) ->
+		%Rtot=rtot(Rext,Raw),
+		%%Crs=50,%%ml/mbar
 		Rtot*Crs/1000.
 
-	rtot() -> 
-		Rext=0,
-		Raw=10,
+	rtot(Rext,Raw) -> 
 		Rext+Raw.
 
-	ve(BodyWt,MinVol_inserted) -> 
-		MinVol=minvol(BodyWt,MinVol_inserted),
+	ve(IBW,MinVol_inserted) -> 
+		MinVol=minvol(IBW,MinVol_inserted),
 		1000*MinVol.
 
-	vd(BodyWt) -> 
-		(BodyWt*2.2).
+	vd(IBW) -> 
+		(IBW*2.2).
 
-	minvol(BodyWt,MinVol_inserted) ->
+	minvol(IBW,MinVol_inserted) ->
 		VentReq=100, %%ml/min/kg
-		MinVol_inserted*BodyWt*VentReq/100/1000.
+		MinVol_inserted*IBW*VentReq/100/1000.
 
 	
