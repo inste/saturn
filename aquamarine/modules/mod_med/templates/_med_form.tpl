@@ -48,7 +48,7 @@
           </div>
           <!-- Text input-->
           <div class="control-group">
-            <label class="control-label" for="weight" style="color:white">Weight</label>
+            <label class="control-label" for="weight" style="color:white;">Weight</label>
             <div class="controls">
               <input id="weight" name="weight" type="text" placeholder="" class="input-mini">
               {% validate id="weight" type={numericality minimum=0 maximum=500} %}
@@ -71,9 +71,90 @@
 
 </div>
 </div>
+   <div class="span4">
+      <div class="well-table" style="background: #FD7749;height:328px;">
+     <label style="color: WhiteSmoke;">Anthropometric</label>
+      <table class="table" style="background: #FD7749;color: WhiteSmoke;">
+        <thead>
+          <tr>
+            <th>Parameter</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>IBW</td>
+            <td id="ibw" name="ibw">&nbsp;</td>
+          </tr>
+          <tr>
+            <td>IBW+30</td>
+            <td id="ibw130" name="ibw130">&nbsp</td>
+          </tr>
+          <tr>
+            <td>ABW</td>
+            <td id="abw" name="abw">&nbsp;</td>
+          </tr>
+          <tr>
+            <td>BSA</td>
+            <td id="bsa" name="bsa">&nbsp;</td>
+          </tr>
+          <tr>
+            <td>BMI</td>
+            <td id="bmi" name="bmi">&nbsp;</td>
+          </tr>
+	  <tr>
+	    <td>BMI</td>
+            <td id="bmi_class" name="bmi_class">&nbsp;</td>  
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div> 
+<div class="span4">
+    <div class="well-table" style="background:#a344d3;height:328px;">
+      <table class="table" style="background:#a344d3;color:whitesmoke;">
+        <thead>
+          <tr>
+            <th>BMI value</th>
+            <th>Class</th>
+          </tr>
+        </thead>
+        <tbody>
+           <tr>
+            <td>BMI&lt;18.5</td>
+            <td>Below normal</td>
+          </tr>
+          <tr>
+            <td>18.5=&lt;BMI&lt;25</td>
+            <td>Normal</td>
+          </tr>
+          <tr>
+            <td>25=&lt;BMI&lt;30</td>
+            <td>Overweight</td>
+          </tr>
+          <tr>
+            <td>30=&lt;BMI&lt;35</td>
+            <td>Class I Obesity</td>
+          </tr>
+          <tr>
+            <td>35=&lt;BMI&lt;40</td>
+            <td>Class II Obesity</td>
+          </tr>
+	   <tr>
+            <td>40=&lt;BMI</td>
+            <td>Class III Obesity</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
-    <div class="span4">
-    <div class="well-table" style="background:#2a81a7;height:328px;">
+</div>
+</div>
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span4">
+    <div class="well-table" style="background:#2a81a7;">
     <label style="color: WhiteSmoke;">Respiratory mechanics: Otis equation</label>    <!--color: #4A4A4A-->
 
   
@@ -111,7 +192,7 @@
     </div>
 
  <div class="span4">
-    <div class="well-table" style="background:#2a81a7;height:328px;">
+    <div class="well-table" style="background:#2a81a7;">
     <label style="color: WhiteSmoke;">Respiratory mechanics: Otis equation</label>    <!--color: #4A4A4A-->
       <table class="table" style="background:#2a81a7;Color:WhiteSmoke">
         <thead>
@@ -149,52 +230,11 @@
       </table>
     </div>
     </div>
-</div>
-</div>
-<div class="container-fluid">
-<div class="row-fluid"><div class="span4">
-      <div class="well-table" style="background: #FD7749">
-     <label style="color: WhiteSmoke;">Anthropometric</label>
-      <table class="table" style="background: #FD7749;color: WhiteSmoke;">
-        <thead>
-          <tr>
-            <th>Parameter</th>
-            <th>Value</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>IBW</td>
-            <td id="ibw" name="ibw">&nbsp;</td>
-          </tr>
-          <tr>
-            <td>IBW+30</td>
-            <td id="ibw130" name="ibw130">&nbsp</td>
-          </tr>
-          <tr>
-            <td>ABW</td>
-            <td id="abw" name="abw">&nbsp;</td>
-          </tr>
-          <tr>
-            <td>BSA</td>
-            <td id="bsa" name="bsa">&nbsp;</td>
-          </tr>
-          <tr>
-            <td>BMI</td>
-            <td id="bmi" name="bmi">&nbsp;</td>
-          </tr>
-	  <tr>
-	    <td>BMI</td>
-            <td id="bmi_class" name="bmi_class">&nbsp;</td>  
-          </tr>
-        </tbody>
-      </table>
-    </div>
-</div>
+     
     <div class="span4">
-    <div class="well-table" style="background:#0a67a3">
+    <div class="well-table" style="background:#0a67a3;">
     <label style="color: whitesmoke">Respiratory mechanics</label>
-      <table class="table" style="background:#0a67a3;color:whitesmoke">
+      <table class="table" style="background:#0a67a3;color:whitesmoke;">
         <thead>
           <tr>
             <th>Parameter</th>
@@ -226,44 +266,7 @@
       </table>
     </div>
 </div>
- <div class="span4">
-    <div class="well-table" style="background:#a344d3">
-      <table class="table" style="background:#a344d3;color:whitesmoke">
-        <thead>
-          <tr>
-            <th>BMI value</th>
-            <th>Class</th>
-          </tr>
-        </thead>
-        <tbody>
-           <tr>
-            <td>BMI&lt;18.5</td>
-            <td>Below normal</td>
-          </tr>
-          <tr>
-            <td>18.5=&lt;BMI&lt;25</td>
-            <td>Normal</td>
-          </tr>
-          <tr>
-            <td>25=&lt;BMI&lt;30</td>
-            <td>Overweight</td>
-          </tr>
-          <tr>
-            <td>30=&lt;BMI&lt;35</td>
-            <td>Class I Obesity</td>
-          </tr>
-          <tr>
-            <td>35=&lt;BMI&lt;40</td>
-            <td>Class II Obesity</td>
-          </tr>
-	   <tr>
-            <td>40=&lt;BMI</td>
-            <td>Class III Obesity</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+ 
 </div>
 </div>
 </div>
