@@ -222,10 +222,6 @@
             <td>I:E</td>
             <td id="ie" name="ie"></td>
           </tr>
-	  <tr>
-            <td>Tests</td>
-            <td id="tests" name="tests"></td>
-          </tr>
         </tbody>
       </table>
     </div>
