@@ -80,7 +80,7 @@
 	<div class="control-group" >
             <label class="control-label" for="minvol" style="color:white">% MinVol</label>
             <div class="controls">
-              <input id="minvol" name="minvol" type="text" class="input-small">
+              <input id="minvol" name="minvol" type="text" class="input-small" value="100">
             </div>
           </div> 
 	<div class="control-group" >
