@@ -74,7 +74,7 @@
 
     <div class="span4">
     <div class="well-table" style="background:#2a81a7;height:328px;">
-    <label style="color: WhiteSmoke;">Otis</label>    <!--color: #4A4A4A-->
+    <label style="color: WhiteSmoke;">Respiratory mechanics: Otis equation</label>    <!--color: #4A4A4A-->
 
   
 	<div class="control-group" >
@@ -112,7 +112,7 @@
 
  <div class="span4">
     <div class="well-table" style="background:#2a81a7;height:328px;">
-    <label style="color: WhiteSmoke;">Otis</label>    <!--color: #4A4A4A-->
+    <label style="color: WhiteSmoke;">Respiratory mechanics: Otis equation</label>    <!--color: #4A4A4A-->
       <table class="table" style="background:#2a81a7;Color:WhiteSmoke">
         <thead>
           <tr>
