@@ -159,7 +159,7 @@
 
   
 	<div class="control-group" >
-            <label class="control-label" for="minvol" style="color:white">% MinVol</label>
+            <label class="control-label" for="minvol" style="color:white">MinVol(%)</label>
             <div class="controls">
               <input id="minvol" name="minvol" type="text" class="input-small" value="100">
             </div>
@@ -167,7 +167,7 @@
 	<div class="control-group" >
             <label class="control-label" for="raw" style="color:white">Raw</label>
             <div class="controls">
-              <input id="raw" name="raw" type="text" class="input-small" value="20">
+              <input id="raw" name="raw" type="text" class="input-small" value="8">
  
             </div>
           </div>
