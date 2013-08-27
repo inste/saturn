@@ -33,10 +33,11 @@
       BMI_class=bmi_class(BMI),
 	%%respirat
       MV=IBW/10,
-      VT=round(IBW*6.5),
+      %%VT=round(IBW*6.5), 
 			%%Otis
       F=best_rate(IBW,MinVol_inserted,Rext,Raw,Crs),
       V_e=ve(IBW,MinVol_inserted)/1000,
+      VT=round(V_e*1000/F),
       Vd=vd(IBW),
       V_d=F*Vd/1000, 
       V_A=F*(V_e*1000/F-Vd)/1000,
