@@ -46,7 +46,15 @@
       PEEP=5,
       E=e(F),
       IE=['1']++[' : ']++io_lib:format("~.2f",[E]),
-
+	%% medications
+      Vecuronium=0.05*IBW,
+      Neostigmine=dose(0.04,0.07,IBW,'mg'),
+      Atropine=0.02*ABW,
+      Lidocaine=dose(1.5,5,ABW,'mg'),
+      Bupivacaine=dose(1.5,3,ABW,'mg'),
+      Intralipid_1=1.5*ABW,
+      Intralipid_2=dose(0.25,0.5,ABW,'ml'),  %%kg/m ???
+      Naloxone=dose(0.1,2.0,1.0,'mg'),
  	
       z_render:update("abw", io_lib:format("~.2f",[ABW])++[' kg'], 
             z_render:update("peep", integer_to_list(PEEP)++[' cm H2O'], 
@@ -65,8 +73,24 @@
 	    z_render:update("v_d", io_lib:format("~.1f",[V_d])++[' l/min'], 
 	    z_render:update("v_a", io_lib:format("~.1f",[V_A])++[' l/min'], 
 	    z_render:update("rtot", integer_to_list(Rtot)++[' cmH2O/l/s'], 
-	    z_render:update("rc", io_lib:format("~.3f",[RC])++[' s'],Context))))))))))))))))).      
+	    z_render:update("rc", io_lib:format("~.3f",[RC])++[' s'],
+	    z_render:update("naloxone",Naloxone,
+	    z_render:update("intralipid_2",Intralipid_2,
+	    z_render:update("intralipid_1",io_lib:format("~.2f",[Intralipid_1])++[' ml'],
+	    z_render:update("bupivacaine",Bupivacaine,
+	    z_render:update("lidocaine",Lidocaine,
+	    z_render:update("atropine",io_lib:format("~.2f",[Atropine])++[' mg'],
+	    z_render:update("vecuronium", io_lib:format("~.2f",[Vecuronium])++[' mg'], 
+	    z_render:update("neostigmine", Neostigmine,Context))))))))))))))))))))))))).
+      
+        dose(Mn,Mx,BW,End) ->
+		Min=Mn*BW,
+		Max=Mx*BW,
+                f_dash_f(Min,Max)++[' ',End].
 
+
+	f_dash_f(Min,Max) ->
+		io_lib:format("~.2f",[Min])++[' - ']++io_lib:format("~.2f",[Max]).   
 
 
 
