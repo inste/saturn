@@ -103,7 +103,11 @@
             <td id="bmi" name="bmi">&nbsp;</td>
           </tr>
 	  <tr>
-	    <td>BMI</td>
+	    <td>Interval</td>
+            <td id="bmi_interval" name="bmi_interval">&nbsp;</td>  
+          </tr>
+	  <tr>
+	    <td>Class</td>
             <td id="bmi_class" name="bmi_class">&nbsp;</td>  
           </tr>
         </tbody>

@@ -31,6 +31,7 @@
       BSA=0.0235*math:exp(0.42246*math:log(Height))*math:exp(0.51456*math:log(Weight)),  %%x^y = exp(y*ln(x))
       BMI=Weight/(Height*Height/10000),
       BMI_class=bmi_class(BMI),
+      BMI_interval=bmi_interval(BMI),
 	%%Otis
       F=best_rate(IBW,MinVol_inserted,Rext,Raw,Crs),
       V_e=ve(IBW,MinVol_inserted)/1000, %%MV=V_e
@@ -59,7 +60,8 @@
             z_render:update("vt", integer_to_list(VT)++[' ml'], 
             z_render:update("mv", io_lib:format("~.2f",[V_e])++[' L/min'],%%MV=V_e
             z_render:update("bmi", io_lib:format("~.2f",[BMI])++[' kg/m&sup2'], 
-            z_render:update("bmi_class", BMI_class,  
+            z_render:update("bmi_class", BMI_class,
+            z_render:update("bmi_interval", BMI_interval,  
 	    z_render:update("bsa", io_lib:format("~.2f",[BSA])++[' m&sup2'],  
             z_render:update("ibw130", io_lib:format("~.2f",[IBW130])++[' kg'],   
 	    z_render:update("ibw", io_lib:format("~.2f",[IBW])++[' kg'],
@@ -77,7 +79,7 @@
 	    z_render:update("lidocaine",Lidocaine,
 	    z_render:update("atropine",io_lib:format("~.2f",[Atropine])++[' mg'],
 	    z_render:update("vecuronium", io_lib:format("~.2f",[Vecuronium])++[' mg'], 
-	    z_render:update("neostigmine", Neostigmine,Context)))))))))))))))))))))))).
+	    z_render:update("neostigmine", Neostigmine,Context))))))))))))))))))))))))).
       
         dose(Mn,Mx,BW,End) ->
 		Min=Mn*BW,
@@ -111,6 +113,16 @@
 		N when N <35 ->'Class I Obesity';
 		N when N <40 ->'Class II Obesity';
 		N when N >=40 ->'Class III Obesity'
+		end.
+
+	bmi_interval(BMI)->
+		case BMI of
+		N when N <18.5 ->'BMI&lt;18.5';
+		N when N <25 ->'18.5=&lt;BMI&lt;25';
+		N when N <30 ->'25=&lt;BMI&lt;30';
+		N when N <35 ->'30=&lt;BMI&lt;35';
+		N when N <40 ->'35=&lt;BMI&lt;40';
+		N when N >=40 ->'40=&lt;BMI'
 		end.
 
 
