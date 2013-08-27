@@ -6,7 +6,7 @@
     <div class="container-fluid" >
    <div class="row-fluid">
 
-    <div class="span4 well-table" style="background:#3CBFCB;height:350px;width:287px;">
+    <div class="span4 well-table" style="background:#3CBFCB;height:390px;width:287px;">
 <div class="container" style="width:287px">
 
           <div class="control-group" >
@@ -72,7 +72,7 @@
 </div>
 </div>
    <div class="span4">
-      <div class="well-table" style="background: #FD7749;height:328px;">
+      <div class="well-table" style="background: #FD7749;height:368px;;">
      <label style="color: WhiteSmoke;">Anthropometric</label>
       <table class="table" style="background: #FD7749;color: WhiteSmoke;">
         <thead>
@@ -111,38 +111,47 @@
     </div>
 </div> 
 <div class="span4">
-    <div class="well-table" style="background:#a344d3;height:328px;">
-      <table class="table" style="background:#a344d3;color:whitesmoke;">
+    <div class="well-table" style="background:#a344d3;height:368px;">
+      <label style="color: WhiteSmoke;">Medications</label>    <!--color: #4A4A4A-->
+      <table class="table" style="background:#a344d3;Color:WhiteSmoke">
         <thead>
           <tr>
-            <th>BMI value</th>
-            <th>Class</th>
+            <th>Drug</th>
+            <th>Dose</th>
           </tr>
         </thead>
         <tbody>
-           <tr>
-            <td>BMI&lt;18.5</td>
-            <td>Below normal</td>
+          <tr>
+            <td>Vecuronium</td>
+            <td id="vecuronium" name="vecuronium"></td>
           </tr>
           <tr>
-            <td>18.5=&lt;BMI&lt;25</td>
-            <td>Normal</td>
+            <td>Neostigmine</td>
+            <td id="neostigmine" name="neostigmine"></td>
           </tr>
           <tr>
-            <td>25=&lt;BMI&lt;30</td>
-            <td>Overweight</td>
+            <td>Atropine</td>
+            <td id="atropine" name="atropine"></td>
           </tr>
           <tr>
-            <td>30=&lt;BMI&lt;35</td>
-            <td>Class I Obesity</td>
+            <td>Lidocaine</td>
+            <td id="lidocaine" name="lidocaine"></td>
           </tr>
           <tr>
-            <td>35=&lt;BMI&lt;40</td>
-            <td>Class II Obesity</td>
+            <td>Bupivacaine</td>
+            <td id="bupivacaine" name="bupivacaine"></td>
           </tr>
-	   <tr>
-            <td>40=&lt;BMI</td>
-            <td>Class III Obesity</td>
+          <tr>
+            <td>Intralipid</td>
+            <td id="intralipid_1" name="intralipid_1"></td>
+          </tr>
+          <tr>
+            <td>Intralipid</td>
+            <td id="intralipid_2" name="intralipid_2"></td>
+          </tr>
+          <tr>
+            <td>Naloxone</td>
+            <td id="naloxone" name="naloxone"></td>
           </tr>
         </tbody>
       </table>
@@ -154,7 +163,7 @@
 <div class="container-fluid">
 <div class="row-fluid">
 <div class="span4">
-    <div class="well-table" style="background:#2a81a7;">
+    <div class="well-table" style="background:#3C9AC2;">
     <label style="color: WhiteSmoke;">Respiratory mechanics: Otis equation</label>    <!--color: #4A4A4A-->
 
   
