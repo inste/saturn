@@ -183,7 +183,7 @@
  	<div class="control-group" >
             <label class="control-label" for="crs" style="color:white">Crs</label>
             <div class="controls">
-              <input id="crs" name="crs" type="text" class="input-small" value="50">
+              <input id="crs" name="crs" type="text" class="input-small" value="35">
               {% validate id="crs" type={numericality} %} 
             </div>
           </div>
@@ -200,41 +200,7 @@
     </div>
     </div>
 
- <div class="span4">
-    <div class="well-table" style="background:#2a81a7;">
-    <label style="color: WhiteSmoke;">Respiratory mechanics: Otis equation</label>    <!--color: #4A4A4A-->
-      <table class="table" style="background:#2a81a7;Color:WhiteSmoke">
-        <thead>
-          <tr>
-            <th>Parameter</th>
-            <th>Value</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Vd</td>
-            <td id="vd" name="vd"></td>
-          </tr>
-          <tr>
-            <td>V'd</td>
-            <td id="v_d" name="v_d"></td>
-          </tr>
-          <tr>
-            <td>V'A</td>
-            <td id="v_a" name="v_a"></td>
-          </tr>
-          <tr>
-            <td>Rtot</td>
-            <td id="rtot" name="rtot"></td>
-          </tr>
-	  <tr>
-            <td>RC</td>
-            <td id="rc" name="rc"></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    </div>
+ 
      
     <div class="span4">
     <div class="well-table" style="background:#0a67a3;">
@@ -272,6 +238,41 @@
     </div>
 </div>
  
+<div class="span4">
+    <div class="well-table" style="background:#2a81a7;">
+    <label style="color: WhiteSmoke;">Respiratory mechanics: Otis equation</label>    <!--color: #4A4A4A-->
+      <table class="table" style="background:#2a81a7;Color:WhiteSmoke">
+        <thead>
+          <tr>
+            <th>Parameter</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Vd</td>
+            <td id="vd" name="vd"></td>
+          </tr>
+          <tr>
+            <td>V'd</td>
+            <td id="v_d" name="v_d"></td>
+          </tr>
+          <tr>
+            <td>V'A</td>
+            <td id="v_a" name="v_a"></td>
+          </tr>
+          <tr>
+            <td>Rtot</td>
+            <td id="rtot" name="rtot"></td>
+          </tr>
+	  <tr>
+            <td>RC</td>
+            <td id="rc" name="rc"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
 </div>
 </div>
 </div>
