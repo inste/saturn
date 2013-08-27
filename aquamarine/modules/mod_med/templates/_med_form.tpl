@@ -212,10 +212,6 @@
         </thead>
         <tbody>
           <tr>
-            <td>V'e</td>
-            <td id="v_e" name="ve"></td>
-          </tr>
-          <tr>
             <td>Vd</td>
             <td id="vd" name="vd"></td>
           </tr>
