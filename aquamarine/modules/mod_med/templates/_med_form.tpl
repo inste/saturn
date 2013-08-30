@@ -244,7 +244,7 @@
  
 <div class="span3">
     <div class="well-table" style="background:#2a81a7;">
-    <label style="color: WhiteSmoke;">Respiratory mechanics: Otis equation</label>    <!--color: #4A4A4A-->
+    <label style="color: WhiteSmoke;">Respiratory mechanics: Otis equation</label>    
       <table class="table" style="background:#2a81a7;Color:WhiteSmoke">
         <thead>
           <tr>
@@ -272,6 +272,60 @@
 	  <tr>
             <td>RC</td>
             <td id="rc" name="rc"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+
+<div class="span3">
+    <div class="well-table" style="background:#2a81a7;">
+    <label style="color: WhiteSmoke;">MAC</label>    
+      <table class="table" style="background:#2a81a7;Color:WhiteSmoke;">
+        <thead>
+          <tr>
+            <th></th>
+            <th>MAC<sub>aw</sub></th>
+            <th>MAC</th>
+	    <th>MAC<sub>bar</sub></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Des</td>
+            <td id="des_awake" name="des_awake"></td>
+            <td id="des" name="des"></td>
+            <td id="des_bar" name="des_bar"></td>
+          </tr>
+          <tr>
+            <td>Izo</td>
+            <td id="izo_awake" name="izo_awake"></td>
+            <td id="izo" name="izo"></td>
+            <td id="izo_bar" name="izo_bar"></td>
+          </tr>
+          <tr>
+            <td>Enf</td>
+            <td id="enf_awake" name="enf_awake"></td>
+            <td id="enf" name="enf"></td>
+            <td id="enf_bar" name="enf_bar"></td>
+          </tr>
+          <tr>
+            <td>Sev</td>
+            <td id="sev_awake" name="sev_awake"></td>
+            <td id="sev" name="sev"></td>
+            <td id="sev_bar" name="sev_bar"></td>
+          </tr>
+	  <tr>
+            <td>Gal</td>
+            <td id="gal_awake" name="gal_awake"></td>
+            <td id="gal" name="gal"></td>
+            <td id="gal_bar" name="gal_bar"></td>
+          </tr>
+	  <tr>
+            <td>N<sub>2</sub>0</td>
+            <td id="n2o_awake" name="n2o_awake"></td>
+            <td id="n2o" name="n2o"></td>
+            <td id="n2o_bar" name="n2o_bar"></td>
           </tr>
         </tbody>
       </table>

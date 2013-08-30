@@ -9,7 +9,7 @@
   %% @doc Handle the submit event of hello
   event({submit, {newmessage, _}, _TriggerId, _TargetId}, Context) -> 
      %% PatId = list_to_integer(z_context:get_q("patient_id", Context)), 
-     %% Age = list_to_integer(z_context:get_q_validated("age", Context)),   
+      Age = list_to_integer(z_context:get_q_validated("age", Context)),   
       Weight = list_to_integer(z_context:get_q_validated("weight", Context)),
       Height = list_to_integer(z_context:get_q_validated("height", Context)),
       %% Otis
@@ -53,6 +53,32 @@
       Intralipid_1=1.5*ABW,
       Intralipid_2=dose(0.25,0.5,ABW,'ml'),  %%kg/m ???
       Naloxone=dose(0.1,2.0,1.0,'mg'),
+	%%MAC
+      Correction=math:exp(-0.00269*(Age-40)*math:log(10)),
+
+      Des=6.65*Correction,
+      Des_awake=Des*0.4,
+      Des_bar=Des*1.85,
+
+      Izo=1.15*Correction,
+      Izo_awake=Izo*0.4,
+      Izo_bar=Izo*1.85,
+
+      Enf=1.70*Correction,
+      Enf_awake=Enf*0.4,
+      Enf_bar=Enf*1.85,
+
+      Sev=2.10*Correction,
+      Sev_awake=Sev*0.4,
+      Sev_bar=Sev*1.85,
+
+      Gal=0.77*Correction,
+      Gal_awake=Gal*0.4,
+      Gal_bar=Gal*1.85,
+
+      N2O=105.00*Correction,
+      N2O_awake=N2O*0.4,
+      N2O_bar=N2O*1.85,
  	
       z_render:update("abw", io_lib:format("~.2f",[ABW])++[' kg'], 
             z_render:update("peep", integer_to_list(PEEP)++[' cm H2O'], 
@@ -79,7 +105,30 @@
 	    z_render:update("lidocaine",Lidocaine,
 	    z_render:update("atropine",io_lib:format("~.2f",[Atropine])++[' mg'],
 	    z_render:update("vecuronium", io_lib:format("~.2f",[Vecuronium])++[' mg'], 
-	    z_render:update("neostigmine", Neostigmine,Context))))))))))))))))))))))))).
+	    z_render:update("neostigmine", Neostigmine,
+	    z_render:update("des", io_lib:format("~.2f",[Des]),
+	    z_render:update("des_awake", io_lib:format("~.2f",[Des_awake]),
+	    z_render:update("des_bar", io_lib:format("~.2f",[Des_bar]),
+
+	    z_render:update("izo", io_lib:format("~.2f",[Izo]),
+	    z_render:update("izo_awake", io_lib:format("~.2f",[Izo_awake]),
+	    z_render:update("izo_bar", io_lib:format("~.2f",[Izo_bar]),
+
+	    z_render:update("enf", io_lib:format("~.2f",[Enf]),
+	    z_render:update("enf_awake", io_lib:format("~.2f",[Enf_awake]),
+	    z_render:update("enf_bar", io_lib:format("~.2f",[Enf_bar]),
+
+	    z_render:update("sev", io_lib:format("~.2f",[Sev]),
+	    z_render:update("sev_awake", io_lib:format("~.2f",[Sev_awake]),
+	    z_render:update("sev_bar", io_lib:format("~.2f",[Sev_bar]),
+
+	    z_render:update("gal", io_lib:format("~.2f",[Gal]),
+	    z_render:update("gal_awake", io_lib:format("~.2f",[Gal_awake]),
+	    z_render:update("gal_bar", io_lib:format("~.2f",[Gal_bar]),
+
+	    z_render:update("n2o", io_lib:format("~.2f",[N2O]),
+	    z_render:update("n2o_awake", io_lib:format("~.2f",[N2O_awake]),
+	    z_render:update("n2o_bar", io_lib:format("~.2f",[N2O_bar]),Context))))))))))))))))))))))))))))))))))))))))))).
       
         dose(Mn,Mx,BW,End) ->
 		Min=Mn*BW,
