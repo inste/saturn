@@ -300,10 +300,16 @@
         </thead>
         <tbody>
           <tr>
-            <td>Des</td>
-            <td id="des_awake" name="des_awake"></td>
-            <td id="des" name="des"></td>
-            <td id="des_bar" name="des_bar"></td>
+            <td>Enf</td>
+            <td id="enf_awake" name="enf_awake"></td>
+            <td id="enf" name="enf"></td>
+            <td id="enf_bar" name="enf_bar"></td>
+          </tr>
+	  <tr>
+            <td>Hal</td>
+            <td id="hal_awake" name="hal_awake"></td>
+            <td id="hal" name="hal"></td>
+            <td id="hal_bar" name="hal_bar"></td>
           </tr>
           <tr>
             <td>Izo</td>
@@ -312,22 +318,16 @@
             <td id="izo_bar" name="izo_bar"></td>
           </tr>
           <tr>
-            <td>Enf</td>
-            <td id="enf_awake" name="enf_awake"></td>
-            <td id="enf" name="enf"></td>
-            <td id="enf_bar" name="enf_bar"></td>
-          </tr>
-          <tr>
             <td>Sev</td>
             <td id="sev_awake" name="sev_awake"></td>
             <td id="sev" name="sev"></td>
             <td id="sev_bar" name="sev_bar"></td>
           </tr>
-	  <tr>
-            <td>Gal</td>
-            <td id="gal_awake" name="gal_awake"></td>
-            <td id="gal" name="gal"></td>
-            <td id="gal_bar" name="gal_bar"></td>
+          <tr>
+            <td>Des</td>
+            <td id="des_awake" name="des_awake"></td>
+            <td id="des" name="des"></td>
+            <td id="des_bar" name="des_bar"></td>
           </tr>
 	  <tr>
             <td>N<sub>2</sub>0</td>

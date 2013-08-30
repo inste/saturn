@@ -3,7 +3,7 @@
   -mod_title("Medicine_mod").
   -mod_description("Medicine module").
  
-  %% interface functions
+   %% interface functions
   -export([event/2]).
   -include_lib("zotonic.hrl").
   %% @doc Handle the submit event of hello
@@ -72,9 +72,9 @@
       Sev_awake=Sev*0.4,
       Sev_bar=Sev*1.85,
 
-      Gal=0.77*Correction,
-      Gal_awake=Gal*0.4,
-      Gal_bar=Gal*1.85,
+      Hal=0.77*Correction,
+      Hal_awake=Hal*0.4,
+      Hal_bar=Hal*1.85,
 
       N2O=105.00*Correction,
       N2O_awake=N2O*0.4,
@@ -122,9 +122,9 @@
 	    z_render:update("sev_awake", io_lib:format("~.2f",[Sev_awake]),
 	    z_render:update("sev_bar", io_lib:format("~.2f",[Sev_bar]),
 
-	    z_render:update("gal", io_lib:format("~.2f",[Gal]),
-	    z_render:update("gal_awake", io_lib:format("~.2f",[Gal_awake]),
-	    z_render:update("gal_bar", io_lib:format("~.2f",[Gal_bar]),
+	    z_render:update("hal", io_lib:format("~.2f",[Hal]),
+	    z_render:update("hal_awake", io_lib:format("~.2f",[Hal_awake]),
+	    z_render:update("hal_bar", io_lib:format("~.2f",[Hal_bar]),
 
 	    z_render:update("n2o", io_lib:format("~.2f",[N2O]),
 	    z_render:update("n2o_awake", io_lib:format("~.2f",[N2O_awake]),
