@@ -176,7 +176,7 @@
 <div class="container-fluid">
 <div class="row-fluid">
 <div class="span3">
-    <div class="well-table" style="background:#3C9AC2;height:310px;">
+    <div class="well-table" style="background:#3C9AC2;">
     <label style="color: WhiteSmoke;">Respiratory mechanics: Otis equation</label>    <!--color: #4A4A4A-->
 
   
@@ -216,7 +216,7 @@
  
      
     <div class="span3">
-    <div class="well-table" style="background:#0a67a3;height:310px;">
+    <div class="well-table" style="background:#0a67a3;">
     <label style="color: whitesmoke">Respiratory mechanics</label>
       <table class="table" style="background:#0a67a3;color:whitesmoke;">
         <thead>
@@ -252,8 +252,8 @@
 </div>
  
 <div class="span3">
-    <div class="well-table" style="background:#2a81a7;height:310px;">
-    <label style="color: WhiteSmoke;">Respiratory mechanics: Otis equation</label>    
+    <div class="well-table" style="background:#2a81a7;">
+    <label style="color: WhiteSmoke;">Respiratory mechanics</label>    
       <table class="table" style="background:#2a81a7;Color:WhiteSmoke">
         <thead>
           <tr>
@@ -288,15 +288,14 @@
     </div>
 
 <div class="span3">
-    <div class="well-table" style="background:#2a81a7;height:310px;">
-    <label style="color: WhiteSmoke;">MAC</label>    
+    <div class="well-table" style="background:#2a81a7;">   
       <table class="table" style="background:#2a81a7;Color:WhiteSmoke;">
         <thead>
           <tr>
             <th></th>
-            <th>MAC<sub>aw</sub> &nbsp;0.4</th>
-            <th>MAC &nbsp;&nbsp;&nbsp;1</th>
-	    <th>MAC<sub>bar</sub> 1.85</th>
+            <th>MAC<sub>aw</sub> &nbsp;(0.4)</th>
+            <th>MAC &nbsp;&nbsp;(1)</th>
+	    <th>MAC<sub>bar</sub> (1.85)</th>
           </tr>
         </thead>
         <tbody>
