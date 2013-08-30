@@ -6,7 +6,7 @@
     <div class="container-fluid" >
    <div class="row-fluid">
 
-    <div class="span4 well-table" style="background:#3CBFCB;height:390px;width:287px;">
+    <div class="span3 well-table" style="background:#3CBFCB;height:390px;">
 <div class="container" style="width:287px">
 
           <div class="control-group" >
@@ -71,8 +71,8 @@
 
 </div>
 </div>
-   <div class="span4">
-      <div class="well-table" style="background: #FD7749;height:368px;;">
+   <div class="span3">
+      <div class="well-table" style="background: #FD7749;height:368px;">
      <label style="color: WhiteSmoke;">Anthropometric</label>
       <table class="table" style="background: #FD7749;color: WhiteSmoke;">
         <thead>
@@ -114,7 +114,7 @@
       </table>
     </div>
 </div> 
-<div class="span4">
+<div class="span6">
     <div class="well-table" style="background:#a344d3;height:368px;">
       <label style="color: WhiteSmoke;">Medications</label>    <!--color: #4A4A4A-->
       <table class="table" style="background:#a344d3;Color:WhiteSmoke">
@@ -166,7 +166,7 @@
 </div>
 <div class="container-fluid">
 <div class="row-fluid">
-<div class="span4">
+<div class="span3">
     <div class="well-table" style="background:#3C9AC2;">
     <label style="color: WhiteSmoke;">Respiratory mechanics: Otis equation</label>    <!--color: #4A4A4A-->
 
@@ -206,7 +206,7 @@
 
  
      
-    <div class="span4">
+    <div class="span3">
     <div class="well-table" style="background:#0a67a3;">
     <label style="color: whitesmoke">Respiratory mechanics</label>
       <table class="table" style="background:#0a67a3;color:whitesmoke;">
@@ -242,7 +242,7 @@
     </div>
 </div>
  
-<div class="span4">
+<div class="span3">
     <div class="well-table" style="background:#2a81a7;">
     <label style="color: WhiteSmoke;">Respiratory mechanics: Otis equation</label>    <!--color: #4A4A4A-->
       <table class="table" style="background:#2a81a7;Color:WhiteSmoke">
