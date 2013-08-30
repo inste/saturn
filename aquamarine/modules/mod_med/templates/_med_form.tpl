@@ -103,7 +103,7 @@
             <td id="bmi" name="bmi">&nbsp;</td>
           </tr>
 	  <tr>
-	    <td>Interval</td>
+	    <td></td>
             <td id="bmi_interval" name="bmi_interval">&nbsp;</td>  
           </tr>
 	  <tr>
@@ -118,43 +118,52 @@
     <div class="well-table" style="background:#a344d3;height:368px;">
       <label style="color: WhiteSmoke;">Medications</label>    <!--color: #4A4A4A-->
       <table class="table" style="background:#a344d3;Color:WhiteSmoke">
-        <thead>
+         <thead>
           <tr>
             <th>Drug</th>
+            <th>Rule</th>
             <th>Dose</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>Vecuronium</td>
+            <td>1 ED95 (0.05 mg/kg)</td>
             <td id="vecuronium" name="vecuronium"></td>
           </tr>
           <tr>
             <td>Neostigmine</td>
+            <td>(0.04 - 0.07 mg/kg)</td>
             <td id="neostigmine" name="neostigmine"></td>
           </tr>
           <tr>
             <td>Atropine</td>
+            <td>(0.02 mg/kg)</td>
             <td id="atropine" name="atropine"></td>
           </tr>
           <tr>
             <td>Lidocaine</td>
+            <td>(1.5 - 5 mg/kg)</td>
             <td id="lidocaine" name="lidocaine"></td>
           </tr>
           <tr>
             <td>Bupivacaine</td>
+            <td>(1.5 - 3 mg/kg)</td>
             <td id="bupivacaine" name="bupivacaine"></td>
           </tr>
           <tr>
             <td>Intralipid</td>
+            <td>(1.5 ml/kg)</td>
             <td id="intralipid_1" name="intralipid_1"></td>
           </tr>
           <tr>
             <td>Intralipid</td>
+            <td>(0.25 - 0.5 ml/kg/m)</td>
             <td id="intralipid_2" name="intralipid_2"></td>
           </tr>
           <tr>
             <td>Naloxone</td>
+            <td>titrate 0.1 - 2 mg(max 10 mg)</td>
             <td id="naloxone" name="naloxone"></td>
           </tr>
         </tbody>
@@ -167,7 +176,7 @@
 <div class="container-fluid">
 <div class="row-fluid">
 <div class="span3">
-    <div class="well-table" style="background:#3C9AC2;">
+    <div class="well-table" style="background:#3C9AC2;height:310px;">
     <label style="color: WhiteSmoke;">Respiratory mechanics: Otis equation</label>    <!--color: #4A4A4A-->
 
   
@@ -207,7 +216,7 @@
  
      
     <div class="span3">
-    <div class="well-table" style="background:#0a67a3;">
+    <div class="well-table" style="background:#0a67a3;height:310px;">
     <label style="color: whitesmoke">Respiratory mechanics</label>
       <table class="table" style="background:#0a67a3;color:whitesmoke;">
         <thead>
@@ -218,11 +227,11 @@
         </thead>
         <tbody>
           <tr>
-            <td>MV</td>
+            <td>V'e</td>
             <td id="mv" name="mv"></td>
           </tr>
           <tr>
-            <td>VT</td>
+            <td>Vt</td>
             <td id="vt" name="vt"></td>
           </tr>
           <tr>
@@ -243,7 +252,7 @@
 </div>
  
 <div class="span3">
-    <div class="well-table" style="background:#2a81a7;">
+    <div class="well-table" style="background:#2a81a7;height:310px;">
     <label style="color: WhiteSmoke;">Respiratory mechanics: Otis equation</label>    
       <table class="table" style="background:#2a81a7;Color:WhiteSmoke">
         <thead>
@@ -279,15 +288,15 @@
     </div>
 
 <div class="span3">
-    <div class="well-table" style="background:#2a81a7;">
+    <div class="well-table" style="background:#2a81a7;height:310px;">
     <label style="color: WhiteSmoke;">MAC</label>    
       <table class="table" style="background:#2a81a7;Color:WhiteSmoke;">
         <thead>
           <tr>
             <th></th>
-            <th>MAC<sub>aw</sub></th>
-            <th>MAC</th>
-	    <th>MAC<sub>bar</sub></th>
+            <th>MAC<sub>aw</sub> &nbsp;0.4</th>
+            <th>MAC &nbsp;&nbsp;&nbsp;1</th>
+	    <th>MAC<sub>bar</sub> 1.85</th>
           </tr>
         </thead>
         <tbody>
