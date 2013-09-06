@@ -3,7 +3,7 @@
   -mod_title("Medicine_mod").
   -mod_description("Medicine module").
  
-   %% interface functions
+  %% interface functions
   -export([event/2]).
   -include_lib("zotonic.hrl").
   %% @doc Handle the submit event of hello
@@ -58,26 +58,22 @@
 
       Des=6.65*Correction,
       Des_awake=Des*0.4,
-      Des_bar=Des*1.85,
+      Des_bar=Des*1.3,
 
       Izo=1.15*Correction,
       Izo_awake=Izo*0.4,
-      Izo_bar=Izo*1.85,
-
-      Enf=1.70*Correction,
-      Enf_awake=Enf*0.4,
-      Enf_bar=Enf*1.85,
+      Izo_bar=Izo*1.3,
 
       Sev=2.10*Correction,
       Sev_awake=Sev*0.4,
-      Sev_bar=Sev*1.85,
+      Sev_bar=Sev*3.5,
 
       Hal=0.77*Correction,
       Hal_awake=Hal*0.4,
-      Hal_bar=Hal*1.85,
+      Hal_bar=Hal*1.45,
 
       N2O=105.00*Correction,
-      N2O_awake=N2O*0.4,
+      N2O_awake=N2O*2/3,
       N2O_bar=N2O*1.85,
  	
       z_render:update("abw", io_lib:format("~.2f",[ABW])++[' kg'], 
@@ -114,10 +110,6 @@
 	    z_render:update("izo_awake", io_lib:format("~.2f",[Izo_awake]),
 	    z_render:update("izo_bar", io_lib:format("~.2f",[Izo_bar]),
 
-	    z_render:update("enf", io_lib:format("~.2f",[Enf]),
-	    z_render:update("enf_awake", io_lib:format("~.2f",[Enf_awake]),
-	    z_render:update("enf_bar", io_lib:format("~.2f",[Enf_bar]),
-
 	    z_render:update("sev", io_lib:format("~.2f",[Sev]),
 	    z_render:update("sev_awake", io_lib:format("~.2f",[Sev_awake]),
 	    z_render:update("sev_bar", io_lib:format("~.2f",[Sev_bar]),
@@ -128,7 +120,7 @@
 
 	    z_render:update("n2o", io_lib:format("~.2f",[N2O]),
 	    z_render:update("n2o_awake", io_lib:format("~.2f",[N2O_awake]),
-	    z_render:update("n2o_bar", io_lib:format("~.2f",[N2O_bar]),Context))))))))))))))))))))))))))))))))))))))))))).
+	    z_render:update("n2o_bar", io_lib:format("~.2f",[N2O_bar]),Context)))))))))))))))))))))))))))))))))))))))).
       
         dose(Mn,Mx,BW,End) ->
 		Min=Mn*BW,
