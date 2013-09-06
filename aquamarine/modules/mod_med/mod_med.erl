@@ -69,7 +69,7 @@
       Sev_bar=Sev*3.5,
 
       Hal=0.77*Correction,
-      Hal_awake=Hal*0.4,
+      Hal_awake=Hal*0.5,
       Hal_bar=Hal*1.45,
 
       N2O=105.00*Correction,
