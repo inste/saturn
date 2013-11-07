@@ -189,14 +189,14 @@
 	<div class="control-group" >
             <label class="control-label" for="raw" style="color:white">Raw</label>
             <div class="controls">
-              <input id="raw" name="raw" type="text" class="input-small" value="8">
+              <input id="raw" name="raw" type="text" class="input-small" value="4">
  
             </div>
           </div>
  	<div class="control-group" >
             <label class="control-label" for="crs" style="color:white">Crs</label>
             <div class="controls">
-              <input id="crs" name="crs" type="text" class="input-small" value="35">
+              <input id="crs" name="crs" type="text" class="input-small" value="45">
               {% validate id="crs" type={numericality} %} 
             </div>
           </div>
