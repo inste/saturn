@@ -288,15 +288,14 @@
     </div>
 
 <div class="span3">
-    <div class="well-table" style="background:#2a81a7;"> 
-      <label style="color: WhiteSmoke;">MAC</label>   
-      <table class="table" style="background:#2a81a7;Color:WhiteSmoke;">
+    <div class="well-table" style="background:#2a81a7;">  
+      <table class="table" style="background:#2a81a7;Color:WhiteSmoke;position:relative;top:4px;">
         <thead>
           <tr>
             <th></th>
-            <th>MAC<sub>aw</sub></th>
-            <th>MAC</th>
-	    <th>MAC<sub>bar</sub></th>
+            <th>MAC<sub>aw</sub><br>Et<sub>exp</sub></th>
+            <th>MAC<br>Et<sub>exp</sub></th>
+	    <th>MAC<sub>bar</sub><br>Et<sub>exp</sub></th>
           </tr>
         </thead>
         <tbody>
